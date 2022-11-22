@@ -1,0 +1,16 @@
+{
+  "name": "nodeninja",
+  "version": "1.0.0",
+  "description": "Basics of Node JS",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
