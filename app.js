@@ -40,25 +40,18 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  const blogs = [
-    {
-      title: "Yoshi finds eggs",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "Mario finds stars",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "How to defeat bowser",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-  ];
-  res.render("index", { title: "Home", blogs });
+  res.redirect("/blogs");
 });
 
 app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
+});
+
+app.get("/blogs", (req, res) => {
+  Blog.find()
+    .sort({ createdAt: -1 })
+    .then((blogs) => res.render("index", { title: "Home", blogs }))
+    .catch((error) => console.log(error));
 });
 
 app.get("/blogs/create", (req, res) => {
@@ -69,9 +62,9 @@ app.get("/blogs/create", (req, res) => {
 
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
-    title: "New Blog",
-    snippet: "About my new blog",
-    body: "More about my new blog",
+    title: "About my Live",
+    snippet: "Its a long story",
+    body: "Once upon a time there was a guy by name DK",
   });
   blog
     .save()
@@ -79,18 +72,18 @@ app.get("/add-blog", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.get("/all-blogs", (req, res) => {
-  Blog.find()
-    .then((result) => res.send(result))
-    .catch((error) => console.log(error));
-});
+// app.get("/all-blogs", (req, res) => {
+//   Blog.find()
+//     .then((result) => res.send(result))
+//     .catch((error) => console.log(error));
+// });
 
-app.get("/all-blogs/:id", (req, res) => {
-  Blog.findById(req.params.id)
-    .then((result) => res.send(result))
-    .catch((error) => console.log(error));
-});
+// app.get("/all-blogs/:id", (req, res) => {
+//   Blog.findById(req.params.id)
+//     .then((result) => res.send(result))
+//     .catch((error) => console.log(error));
+// });
 
-app.use((req, res) => {
-  res.status(404).render("404", { title: "Not Found" });
-});
+// app.use((req, res) => {
+//   res.status(404).render("404", { title: "Not Found" });
+// });
