@@ -6,8 +6,7 @@ const Blog = require("./models/blogs");
 const app = express();
 app.set("view engine", "ejs");
 
-const DB_URL =
-  "mongodb+srv://deepak:bunty@cluster0.j8t20t5.mongodb.net/blogger";
+const DB_URL = "";
 
 mongoose.connect(
   DB_URL,
